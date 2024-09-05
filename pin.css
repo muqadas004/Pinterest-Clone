@@ -1,0 +1,119 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+.nav{
+    display: flex;
+    justify-content: space-between;
+    height: 50px;
+    align-items: center;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+.nav img:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.nav > li{
+    list-style: none;
+    cursor: pointer;
+    padding: 1%;
+}
+
+.nav > li:nth-child(2){
+    font-weight: 600;
+    color: white;
+    background: black;
+    border-radius: 40px;
+}
+
+
+.nav > li:nth-child(2):hover {
+    background: black;
+    color : white;
+    cursor: pointer;  
+}
+
+.search{   
+    width: 90%;
+    height: 100%;
+    position: relative;
+    padding: 1%;
+}
+
+.search > input{
+    border: 0;
+    width: 100%;
+    height: 50px;
+    border-radius: 40px;
+    margin-top: -15px;
+    padding: 1%;
+    background-color: rgba(128, 128, 128, 0.212); 
+}
+
+.search > input:focus{
+    outline: none;
+}
+
+.profile img{
+    object-fit: cover;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.container{
+    --gap : 0%;
+    --columns : 6;
+    max-width: 100%;
+    margin: 0 auto;
+    display: column;
+    columns: var(--columns);
+    gap: var(--gap);
+    margin-top: 1%;
+}
+
+.container > *{
+    break-inside : avoid;
+    margin-bottom: var(--gap);
+}
+
+@supports(grid-template-rows: masonry){
+    .container{
+        display: grid;
+        grid-template-columns: repeat(var(--columns));
+        grid-template-rows: masonry;
+        grid-auto-flow: dense;
+    }
+    .container > *{
+        margin-bottom: 0%;
+    }   
+}
+
+.container > div{
+    padding: 0%;
+    margin: 10px 10px;
+    border-radius: 20px;
+}
+
+.container  img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+
+.img{
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 620px) {
+    .nav, .container, .img {
+      width: 100%;
+    }
+}

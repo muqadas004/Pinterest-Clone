@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pinterest</title>
+    <link rel="stylesheet" href="card.css">
+    <script type="text/javascript" src="pin.js"></script>
+</head>
+
+<body>
+    <div class="nav">
+        <li><img src="logo.png" alt="logo" width="30" height="30" onclick="goToPage()"></li>
+        <li onclick="goToPage()">Home</li>
+        <li class="search"><input type="search" placeholder="Search"></li>
+        <li class="profile"><img src="profile.webp" alt="profile" width="45" height="45"></li>
+    </div>
+
+    <div class="card">
+        <div class="img"></div>
+    </div>
+
+    <script>
+        // Function to get query parameter from URL
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, '\\$&');
+            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
+        // Reading the id from the query parameter
+        var id = getParameterByName('id');
+        // Finding the item in array with id
+        var item = data.find(function(item) {
+            return item.id == id;
+        });
+
+        if (item) {
+            var card = document.querySelector('.card');
+            var imgDiv = document.createElement('div');
+            imgDiv.className = 'img';
+            imgDiv.innerHTML = `
+                <a href="${item.url}" target="_blank">
+                    <img src="${item.imageUrl}" id="pn_img">
+                </a>
+                <div style="padding: 10px;">
+                    <a href="${item.url}" target="_blank" class="custom-link">
+                        <p id="variableValue">${item.target}</p>
+                    </a>
+                    <p id="title">${item.title}</p>
+                    <p id="description">${item.description}</p>
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <a href="${item.user.profileImage}" target="_blank">
+                            <img src="${item.user.profileImage}" id="user">
+                        </a>
+                        <div>
+                            <p id="name">${item.user.username}</p>
+                            <p id="followers">${item.user.followers}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+            card.appendChild(imgDiv);
+        } else {
+            console.error('Item with id=' + id + ' not found.');
+        }
+    </script>
+    
+</body>
+</html>

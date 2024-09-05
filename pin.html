@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pinterest</title>
+    <link rel="stylesheet" href="pin.css">
+    <script  type="text/javascript" src="pin.js"></script>
+    </head>
+<body>
+    <div class="nav">
+        <li><img src="logo.png" alt="logo" width="30" height="30" onclick="goToPage()"></li>
+        <li onclick="goToPage()">Home</li>
+        <li class="search"><input type="search" placeholder="Search"></li>
+        <li class="profile"><img src="profile.webp" alt="profile" width="45" height="45"></li>
+    </div>
+
+    <div class="container">
+        <div class="img">
+        </div>
+    </div>
+    
+    <script>
+    var container = document.querySelector('.container');
+    data.forEach(function(item) {
+    var imgDiv = document.createElement('div');
+    imgDiv.className = 'img';
+    imgDiv.innerHTML= `
+        <a href="card.html?id=${item.id}">
+            <img src="${item.imageUrl}">
+        </a>
+        `;
+    container.appendChild(imgDiv);
+    })
+    </script>
+    
